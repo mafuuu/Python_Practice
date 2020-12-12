@@ -1,0 +1,290 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Sat Dec 12 15:49:14 2020
+
+@author: serap
+"""
+
+#pass Ignore exceptions
+#(例外の無視とパス)
+
+#例外がおきれも無視する
+try:
+    a = 2
+    b = 0
+    print(a / b)
+except ZeroDivisionError:
+    pass
+
+#whileで使うpass
+i = 0
+while i < 3:
+    print(i)
+    i = i + 1
+else:
+    pass
+# -*- coding: utf-8 -*-
+"""
+Created on Sat Dec 12 15:58:59 2020
+
+@author: serap
+"""
+
+#7 Exercises
+
+#1.例外発生をつくる
+a = 10
+b = 0#1
+try:
+    print(a / b)
+except ZeroDivisionError:
+    msg = "例外発生"
+    print(msg)
+    
+#2.msg1に例外2　msg2に例外処理終了
+try:
+    array = [3,2,0,1]
+    a = 10
+    i = "ABC"#1
+    b = array[i]
+except ZeroDivisionError:
+    msg1 = "例外１"
+    print(msg1)
+except TypeError:#2
+    msg1 = "例外2"
+    print(msg1)
+finally:#3
+    msg2 = "例外処理終了"
+    print(msg2)
+    
+#3.msg1 例外発生　msg2 例外処理終了
+try:
+    a = 1
+    b = "ABC"
+    ans = a + b
+except TypeError:#1
+    msg1 = "例外発生"
+    print(msg1)
+else:
+    msg1 = "例外発生せず"
+    print(msg1)
+finally:#2
+    msg2 = "例外処理終了"
+    print(msg2)
+# -*- coding: utf-8 -*-
+"""
+Created on Sat Dec 12 15:02:01 2020
+
+@author: serap
+"""
+
+#例外が起きる例
+#0での割り算
+a = 2
+b = 0
+#print(a / b)
+
+#リストの範囲外
+a = [1,2,3,4]
+print(a[0])
+#print(a[100])
+
+#異なる方の演算
+a = 2
+b = "ABC"
+#print(a + b)
+
+#例外処理
+#例外が発生した際にプログラムを終了させない処理
+#try ~ except
+
+#例外処理の例
+#0での割り算
+try:
+    a = 2
+    b = 0
+    print(a / b)
+except ZeroDivisionError:
+    print("0での割り算")
+    
+#リストの範囲外
+try:
+    a = [1,2,3,4]
+    print(a[100])
+except IndexError:
+    print("リスト範囲外")
+    
+#異なる方の演算
+try:
+    a = 2
+    b = "ABC"
+    print(a + b)
+except TypeError:
+    print("異なる方の演算")                  
+
+
+
+# -*- coding: utf-8 -*-
+"""
+Created on Sat Dec 12 15:15:54 2020
+
+@author: serap
+"""
+
+#else と　finally
+
+#例外が起きずにelseで抜ける処理の例
+#exceptの処理を通っていない
+try:
+    a = 2
+    b = 2
+    print(a / b)
+except ZeroDivisionError:
+    print("例外が発生")
+else:
+    print("例外発生せずに終了")
+    
+#例外発生の関係なしに絶対に通る処理
+#例外を発生させながら、finallyに抜ける処理
+try:
+    a = 2
+    b = 0
+    print(a / b)
+except ZeroDivisionError:
+    print("例外発生")
+finally:
+    print("最後に実行")    
+    
+
+#例外を発生させず、finallyに抜ける処理
+try:
+    a = 2
+    b = 2
+    print(a / b)
+except ZeroDivisionError:
+    print("例外発生")
+finally:
+    print("最後に実行")    
+
+#elseとfinallyを一緒に入れることも可能
+try:
+    a = 2
+    b = 2
+    print(a / b)
+except ZeroDivisionError:
+    print("例外発生")
+else:
+    print("例外の発生がなく終了")
+finally:
+    print("最後に実行")
+
+# -*- coding: utf-8 -*-
+"""
+Created on Sat Dec 12 15:26:46 2020
+
+@author: serap
+"""
+
+#例外クラス
+
+#0の割り算
+try:
+    a = 2
+    b = 0
+    print(a / b)
+except ZeroDivisionError as e:
+    #例外メッセージの表示
+    print(e)
+    #例外クラスの名前を表示
+    print(type(e))
+    
+#違う方の演算
+try:
+    a = 2
+    b = "ABC"
+    print(a + b)
+except TypeError as e:
+    #例外メッセージの表示
+    print(e)
+    #例外クラスの名前を表示
+    print(type(e))
+    
+#例外がわからない場合の書き方
+try:
+    a = 2
+    b = 0
+    print(a / b)
+except BaseException as e:
+    #例外メッセージの表示
+    print(e)
+    #例外クラスの名前を表示
+    print(type(e))
+
+    
+
+# -*- coding: utf-8 -*-
+"""
+Created on Sat Dec 12 15:32:36 2020
+
+@author: serap
+"""
+
+#Handling multiple exceptions
+#(複数の例外の処理)
+
+#IndexError
+try:
+    a = 10
+    b = [1,2,3]
+    #割り算をする
+    i = 0
+    while i < 4:
+        print("{}/{}=".format(a,b[i]),end="")
+        print(a / b[i])
+        i = i + 1
+except IndexError:
+    print("配列の範囲をこえました")
+except ZeroDivisionError:
+    print("ゼロでの割り算はできません")
+    
+#ZeroDivisionError
+try:
+    a = 10
+    b = [1,2,0]
+    #割り算をする
+    i = 0
+    while i < 4:
+        print("{}/{}=".format(a,b[i]),end="")
+        print(a / b[i])
+        i = i + 1
+except IndexError:
+    print("配列の範囲をこえました")
+except ZeroDivisionError:
+    print("ゼロでの割り算はできません")
+    
+#exceptをひとまとめにしたもの
+try:
+    a = 10
+    b = [1,2,0]
+    #割り算をする
+    i = 0
+    while i < 4:
+        print("{}/{}=".format(a,b[i]),end="")
+        print(a / b[i])
+        i = i + 1
+except (IndexError,ZeroDivisionError) as e:
+    print(e)
+    
+#一番楽なもの
+#どの例外でエラーが起きてるかわからないときに全部をひっかけられるようにする
+try:
+    a = 10
+    b = [1,2,3]
+    i = 0
+    while i < 4:
+        print("{} / {} = ".format(a,b[i]),end= "")
+        print(a / b[i])
+        i = i + 1
+except BaseException as e:
+    print(e)
+    print(type(e))
